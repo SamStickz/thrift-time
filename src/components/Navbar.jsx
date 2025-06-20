@@ -5,7 +5,12 @@ const Navbar = () => {
     <nav className="bg-[#1e1e1e] text-[#f4f1ed] font-mono border-b-2 border-[#ffc600] shadow-md z-50 relative">
       <div className="max-w-7xl mx-auto px-6 py-4 relative flex flex-col md:flex-row items-center md:justify-start gap-4 md:gap-0">
         {/* Logo on the left */}
-        <div className="text-xl uppercase tracking-widest font-bold md:mr-auto">
+        <div className="flex items-center gap-2 text-xl uppercase tracking-widest font-bold md:mr-auto">
+          <img
+            src="/icon.png"
+            alt="ThriftTime Logo"
+            className="w-6 h-6"
+          />
           ThriftTime
         </div>
 
