@@ -1,17 +1,20 @@
 import { useCart } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 
 const CartIcon = () => {
   const { cartItems } = useCart();
   const total = cartItems.reduce((sum, item) => sum + item.quantity, 0);
   const navigate = useNavigate();
+  const location = useLocation();
   const [showPreview, setShowPreview] = useState(false);
+
+  const isCartPage = location.pathname === "/cart";
 
   return (
     <div
       className="fixed top-4 right-4 z-[9999]"
-      onMouseEnter={() => setShowPreview(true)}
+      onMouseEnter={() => !isCartPage && setShowPreview(true)}
       onMouseLeave={() => setShowPreview(false)}
     >
       <div
@@ -26,7 +29,7 @@ const CartIcon = () => {
         )}
       </div>
 
-      {showPreview && cartItems.length > 0 && (
+      {!isCartPage && showPreview && cartItems.length > 0 && (
         <div className="absolute right-0 mt-2 w-64 bg-white border border-[#1e1e1e] rounded shadow-lg p-3 text-sm font-mono text-[#1e1e1e]">
           <h4 className="font-bold mb-2">🧺 Items in Cart:</h4>
           <ul className="max-h-40 overflow-y-auto space-y-2">
